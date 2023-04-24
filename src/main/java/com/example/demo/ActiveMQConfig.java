@@ -16,15 +16,17 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:activemqBroker.properties")
 public class ActiveMQConfig {
 
-    @Value("${active-mq.broker-url}")
-    private String brokerUrl;
+    @Value("${internal.broker-url}")
+    private String brokerUrlInternal;
+    @Value("${external.broker-url}")
+    private String brokerUrlExternal;
 
     @Autowired
     private CamelContext context;
     @Bean
     public ConnectionFactory connectionFactory(){
         ActiveMQConnectionFactory activeMQConnectionFactory  = new ActiveMQConnectionFactory();
-        activeMQConnectionFactory.setBrokerURL(brokerUrl);
+        activeMQConnectionFactory.setBrokerURL(brokerUrlInternal);
         return  activeMQConnectionFactory;
     }
     @Bean
@@ -32,7 +34,22 @@ public class ActiveMQConfig {
         // Create the Camel JMS component and wire it to our Artemis connectionfactory
         JmsComponent jms = new JmsComponent();
         jms.setConnectionFactory(connectionFactory());
-        context.addComponent("jms", jms);
+        context.addComponent("internal", jms);
+        return jms;
+    }
+
+    @Bean
+    public ConnectionFactory connectionFactory2(){
+        ActiveMQConnectionFactory activeMQConnectionFactory  = new ActiveMQConnectionFactory();
+        activeMQConnectionFactory.setBrokerURL(brokerUrlExternal);
+        return  activeMQConnectionFactory;
+    }
+    @Bean
+    public JmsComponent jmsComponent2() throws JMSException {
+        // Create the Camel JMS component and wire it to our Artemis connectionfactory
+        JmsComponent jms = new JmsComponent();
+        jms.setConnectionFactory(connectionFactory2());
+        context.addComponent("external", jms);
         return jms;
     }
 }

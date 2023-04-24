@@ -33,9 +33,11 @@ public class MyRouteBuilder extends RouteBuilder {
 //                .otherwise()
 //                    .log("Other message")
 //                    .to("file:target/messages/others");
-        from("jms:queue:WaitingLobby")
-        .log("Processing message")
-        .to("jms:topic:processed");
+        from("internal:queue:WaitingLobby")
+        .log("Sending message")
+        .to("external:topic:processed");
+        from("external:topic:processed")
+        .log("Processing message");
     }
 
 }
