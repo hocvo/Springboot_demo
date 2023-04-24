@@ -13,10 +13,13 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-activemq'
-	implementation 'org.apache.camel.springboot:camel-spring-boot-starter:3.19.0'
-	implementation 'org.apache.camel.springboot:camel-jms-starter:3.19.0'
+	//implementation 'org.springframework.boot:spring-boot-starter-activemq'
+	//implementation 'org.apache.camel.springboot:camel-spring-boot-starter:3.19.0'
+    implementation 'org.apache.camel.springboot:camel-spring-boot-xml-starter:3.19.0'
+    //implementation 'org.apache.camel.springboot:camel-activemq-starter:3.19.0'
+	//implementation 'org.apache.camel.springboot:camel-jms-starter:3.19.0'
 	implementation 'org.apache.camel:camel-jms:3.19.0'
+	implementation 'org.apache.camel:camel-activemq:3.19.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+<!-- NOTE: This class is not needed. Springboot automatically create camel context and read routes from resources/camel -->
+
+<!--   <bean id="activeMQProperties" class="org.apache.camel.component.properties.PropertiesComponent">
+        <property name="location" value="classpath:activemqBroker.properties"/>
+    </bean>-->
+
+<!--    <bean id="externalConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${externalBroker.broker-url}"/>
+        <property name="userName" value="${externalBroker.username}"/>
+        <property name="password" value="${externalBroker.password}"/>
+    </bean>
+    <bean id="externalJmsConfig" class="org.apache.camel.component.jms.JmsConfiguration">
+        <property name="connectionFactory" ref="externalConnectionFactory"/>
+    </bean>
+    <bean id="external" class="org.apache.camel.component.activemq.ActiveMQComponent">
+        <property name="configuration" ref="externalJmsConfig"/>
+    </bean>-->
+
+
+   <!-- <camelContext xmlns="http://camel.apache.org/schema/spring">
+         <propertyPlaceholder id="myPropertyPlaceholder">
+            <propertiesLocation
+              resolver = "classpath"
+              path     = "camel.properties"
+              optional = "false"/>
+            <propertiesLocation
+              resolver = "classpath"
+              path     = "my-properties-2.properties"
+              optional = "true"/>
+            <propertiesLocation
+                resolver="file"
+                path="my-override.properties"
+                optional="true" />
+        </propertyPlaceholder>
+        
+        <route>
+            <from uri="direct:test"/>
+            <log message="processed"/>
+        </route>
+        
+    </camelContext>-->
+
+   <!-- <bean id="internal" class="org.apache.camel.component.jms.JmsConfiguration">
+        <property name="connectionFactory">
+            <bean id="internalConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="${internalBroker.broker-url}"/>
+                <property name="userName" value="${internalBroker.username}"/>
+                <property name="password" value="${internalBroker.password}"/>
+            </bean>
+        </property>
+    </bean>-->
+</beans>

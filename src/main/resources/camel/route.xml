@@ -1,0 +1,7 @@
+<!-- Anything in resources/camel packages will automatically read by camel xml spring boot -->
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route id="test">
+        <from uri="internal:queue:test"/>
+        <log message="received!"/>
+    </route>
+</routes>
